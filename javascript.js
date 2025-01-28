@@ -27,14 +27,23 @@ const resize = document.querySelector("button");
 
 // Create const for input and for the container of the grid
 let userInput;
-resize.addEventListener("click",createGrid);
-
-function createGrid(){
+resize.addEventListener("click",()=>{
     userInput = prompt("Enter number of squares per side of the new grid:");
+    let size = parseInt(userInput,10);
+    if ( isNaN(size) || size > 100 || size < 0 ){
+        alert("Invalid input! Your input must be an integer between 0 and 100.")
+    }
+    else{
+        createGrid(size)
+    }
+
+});
+
+function createGrid(size){
     container.innerHTML = "";  //Erase previous grid
-    let dimensions = (672-(userInput*2))/userInput;
+    let dimensions = (672-(size*2))/size;
     // Create grid of length userInput
-    for(let i = 0 ; i < userInput*userInput ; i ++){
+    for(let i = 0 ; i < size*size ; i ++){
         const div = document.createElement("div");
         div.classList.add("grid");
         div.style.height = `${dimensions}px`;
