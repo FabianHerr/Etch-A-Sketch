@@ -20,3 +20,8 @@ body {
     align-items: center;
     margin: 40px;
 }
+
+.pen-icon{
+    height: 40px;
+    width: auto;
+}

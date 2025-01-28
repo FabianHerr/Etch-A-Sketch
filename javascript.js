@@ -21,3 +21,36 @@ grids.forEach(grid =>{
         grid.style.backgroundColor = "black";
     });
 });
+
+// Select resize button
+const resize = document.querySelector("button");
+
+// Create const for input and for the container of the grid
+let userInput;
+resize.addEventListener("click",createGrid);
+
+function createGrid(){
+    userInput = prompt("Enter number of squares per side of the new grid:");
+    container.innerHTML = "";  //Erase previous grid
+    let dimensions = (672-(userInput*2))/userInput;
+    // Create grid of length userInput
+    for(let i = 0 ; i < userInput*userInput ; i ++){
+        const div = document.createElement("div");
+        div.classList.add("grid");
+        div.style.height = `${dimensions}px`;
+        div.style.width = `${dimensions}px`;
+        div.style.border = "1px solid black";
+        container.appendChild(div);
+    }
+
+    // Select the new grid boxes
+    const grids = document.querySelectorAll(".grid");
+    grids.forEach(grid =>{
+        grid.addEventListener("mouseenter", ()=>{
+            grid.style.backgroundColor = "blue";
+        });
+        grid.addEventListener("mouseleave", ()=>{
+            grid.style.backgroundColor = "black";
+        });
+    });
+}
